@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: front-push
+  kafka:
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: "*"
+  redis:
+    port: 6379
+    host: ${REDIS_HOST:localhost}
