@@ -11,6 +11,7 @@ import java.util.UUID;
 @Value
 @Builder
 @With
+//TODO move it to the test dir
 public class Message {
 
     UUID authorId;

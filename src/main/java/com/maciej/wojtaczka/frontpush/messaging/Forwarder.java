@@ -24,8 +24,7 @@ class Forwarder {
 	}
 
 	<T> Mono<Void> forwardOutboundParcel(Envelope<T> envelope, OutboundParcel.Type type) {
-
-		return Flux.fromIterable(envelope.getReceivers())
+		return Flux.fromIterable(envelope.getRecipients())
 				   .flatMap(userId -> destinationDiscovery.discoverForUser(userId)
 														  .map(destination -> Map.entry(destination, userId)))
 				   .collectMultimap(Map.Entry::getKey, Map.Entry::getValue)

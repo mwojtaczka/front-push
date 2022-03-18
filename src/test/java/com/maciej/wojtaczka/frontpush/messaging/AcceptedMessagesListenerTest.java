@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.maciej.wojtaczka.frontpush.model.message.Envelope;
 import com.maciej.wojtaczka.frontpush.model.message.Message;
+import com.maciej.wojtaczka.frontpush.model.parcel.OutboundParcel;
 import com.maciej.wojtaczka.frontpush.utils.KafkaTestListener;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import static com.maciej.wojtaczka.frontpush.messaging.MessagingConfiguration.ME
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
+@EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9192", "port=9192" })
 @DirtiesContext
 class AcceptedMessagesListenerTest {
 
@@ -69,15 +70,15 @@ class AcceptedMessagesListenerTest {
 		//then
 		Thread.sleep(100);
 		String jsonFromTopic1 = kafkaTestListener.receiveContentFromTopic("topic1").orElseThrow();
-		Envelope<Message> fromTopic1 = objectMapper.readValue(jsonFromTopic1, new TypeReference<>() {
+		OutboundParcel<Message> fromTopic1 = objectMapper.readValue(jsonFromTopic1, new TypeReference<>() {
 		});
-		assertThat(fromTopic1.getReceivers()).containsExactly(recipient1);
+		assertThat(fromTopic1.getRecipients()).containsExactly(recipient1);
 		assertThat(fromTopic1.getPayload().getContent()).isEqualTo("Hello world");
 
 		String jsonFromTopic2 = kafkaTestListener.receiveContentFromTopic("topic2").orElseThrow();
-		Envelope<Message> fromTopic2 = objectMapper.readValue(jsonFromTopic2, new TypeReference<>() {
+		OutboundParcel<Message> fromTopic2 = objectMapper.readValue(jsonFromTopic2, new TypeReference<>() {
 		});
-		assertThat(fromTopic2.getReceivers()).containsExactlyInAnyOrder(recipient2, recipient3);
+		assertThat(fromTopic2.getRecipients()).containsExactlyInAnyOrder(recipient2, recipient3);
 		assertThat(fromTopic2.getPayload().getContent()).isEqualTo("Hello world");
 	}
 

@@ -2,7 +2,7 @@ spring:
   application:
     name: front-push
   kafka:
-    bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+    bootstrap-servers: localhost:9192
     properties:
       spring:
         json:
@@ -10,4 +10,4 @@ spring:
             packages: "*"
   redis:
     port: 6379
-    host: ${REDIS_HOST:localhost}
+    host: localhost

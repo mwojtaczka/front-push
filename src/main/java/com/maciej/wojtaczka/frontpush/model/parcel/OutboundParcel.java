@@ -9,7 +9,7 @@ import java.util.UUID;
 public class OutboundParcel<T> {
 
 	Type type;
-	Collection<UUID> receivers;
+	Collection<UUID> recipients;
 	T payload;
 
 	public static <E> OutboundParcel<E> pack(E payload, Type type, Collection<UUID> receivers) {

@@ -2,10 +2,12 @@ package com.maciej.wojtaczka.frontpush.messaging;
 
 import com.maciej.wojtaczka.frontpush.model.message.Envelope;
 import com.maciej.wojtaczka.frontpush.model.parcel.OutboundParcel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate;
 
 import java.util.Map;
 
+@Slf4j
 class EnvelopeListener {
 
 	private final ReactiveKafkaConsumerTemplate<String, Envelope<?>> kafkaEnvelopeListener;
@@ -23,6 +25,7 @@ class EnvelopeListener {
 	void listen() {
 		kafkaEnvelopeListener.receive()
 							 .flatMap(consumerRecord -> forwarder.forwardOutboundParcel(consumerRecord.value(), resolveType(consumerRecord.topic())))
+							 .onErrorContinue((throwable, o) -> log.error(throwable.getMessage()))
 							 .subscribe();
 	}
 

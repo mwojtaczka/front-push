@@ -38,10 +38,9 @@ public class MessagingConfiguration {
 																							 ObjectMapper objectMapper) {
         ReceiverOptions<String, Envelope<?>> basicReceiverOptions = ReceiverOptions.create(kafkaProperties.buildConsumerProperties());
         ReceiverOptions<String, Envelope<?>> messageReceiverOptions =
-                basicReceiverOptions.subscription(Set.of(MESSAGE_ACCEPTED_TOPIC))
+                basicReceiverOptions.subscription(Set.of(MESSAGE_ACCEPTED_TOPIC, MESSAGE_STATUS_UPDATED_TOPIC))
                         .consumerProperty(ConsumerConfig.GROUP_ID_CONFIG, applicationName)
-                        .consumerProperty(JsonDeserializer.VALUE_DEFAULT_TYPE, Envelope.class)
-                        .consumerProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class)
+                        .consumerProperty(JsonDeserializer.USE_TYPE_INFO_HEADERS, false)
 						.withValueDeserializer(new KafkaGenericDeserializer<>(objectMapper, new TypeReference<Envelope<?>>() {
 						}));
 
