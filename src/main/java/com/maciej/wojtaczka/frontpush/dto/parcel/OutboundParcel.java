@@ -1,4 +1,4 @@
-package com.maciej.wojtaczka.frontpush.model.parcel;
+package com.maciej.wojtaczka.frontpush.dto.parcel;
 
 import lombok.Value;
 

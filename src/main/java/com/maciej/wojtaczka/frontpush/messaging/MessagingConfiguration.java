@@ -2,8 +2,8 @@ package com.maciej.wojtaczka.frontpush.messaging;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.maciej.wojtaczka.frontpush.model.message.Envelope;
-import com.maciej.wojtaczka.frontpush.model.parcel.OutboundParcel;
+import com.maciej.wojtaczka.frontpush.dto.message.Envelope;
+import com.maciej.wojtaczka.frontpush.dto.parcel.OutboundParcel;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.errors.SerializationException;

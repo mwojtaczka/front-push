@@ -1,4 +1,4 @@
-package com.maciej.wojtaczka.frontpush.model.message;
+package com.maciej.wojtaczka.frontpush.dto.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;

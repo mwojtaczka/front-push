@@ -1,4 +1,4 @@
-package com.maciej.wojtaczka.frontpush.model.message;
+package model;
 
 import lombok.Builder;
 import lombok.Value;
@@ -11,7 +11,6 @@ import java.util.UUID;
 @Value
 @Builder
 @With
-//TODO move it to the test dir
 public class Message {
 
     UUID authorId;

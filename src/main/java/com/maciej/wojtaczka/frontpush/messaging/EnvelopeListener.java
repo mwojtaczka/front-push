@@ -1,7 +1,7 @@
 package com.maciej.wojtaczka.frontpush.messaging;
 
-import com.maciej.wojtaczka.frontpush.model.message.Envelope;
-import com.maciej.wojtaczka.frontpush.model.parcel.OutboundParcel;
+import com.maciej.wojtaczka.frontpush.dto.message.Envelope;
+import com.maciej.wojtaczka.frontpush.dto.parcel.OutboundParcel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate;
 
