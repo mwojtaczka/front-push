@@ -32,7 +32,8 @@ class EnvelopeListener {
 	private OutboundParcel.Type resolveType(String topicName) {
 		OutboundParcel.Type type = topicToTypeMap.get(topicName);
 		if (type == null) {
-			throw new IllegalStateException("Topic name cannot be resolved");
+			log.warn("Parcel type not found for topic: {}", topicName);
+			return OutboundParcel.Type.GENERIC;
 		}
 		return type;
 	}

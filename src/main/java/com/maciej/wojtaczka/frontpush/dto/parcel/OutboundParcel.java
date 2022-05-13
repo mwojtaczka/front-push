@@ -18,6 +18,10 @@ public class OutboundParcel<T> {
 
 	public enum Type {
 		MESSAGE,
-		MESSAGE_STATUS
+		MESSAGE_STATUS,
+		CONNECTION_REQUESTED,
+		CONNECTION_CREATED,
+		GENERIC,
+		ANNOUNCEMENT
 	}
 }
